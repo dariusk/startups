@@ -89,16 +89,19 @@ function getWords(suppressGenerate) {
   });
 }
 
-function generate(stuffPlural, stuffPlural2, stuffPlural3) {
+function generate(stuffPlural, stuffPlural2, stuffPlural3, startup, startup2, startup3) {
   stuffPlural = stuffPlural || stuff.pick().pluralize();
   stuffPlural2 = stuffPlural2 || stuff.pick().pluralize();
   stuffPlural3 = stuffPlural3 || stuff.pick().pluralize();
-  var generatedText = startups.pick() + ' for ' + stuffPlural + '<br>' + startups.pick() + ' for ' + stuffPlural2 + '<br>' + startups.pick() + ' for ' + stuffPlural3;
+  startup = startups[startup] || startups.pick();
+  startup2 = startups[startup2] || startups.pick();
+  startup3 = startups[startup3] || startups.pick();
+  var generatedText = startup + ' for ' + stuffPlural + '<br>' + startup2 + ' for ' + stuffPlural2 + '<br>' + startup3 + ' for ' + stuffPlural3;
   $('#content').html('<p>' + generatedText + '</p>');
-  var shareUrl = location.href.split('?')[0]+'?word='+encodeStr(stuffPlural)+'$'+encodeStr(stuffPlural2)+'$'+encodeStr(stuffPlural3);
-  $('#share').attr('href', shareUrl);;
+  var shareUrl = location.href.split('?')[0]+'?word='+encodeStr(stuffPlural)+'$'+encodeStr(stuffPlural2)+'$'+encodeStr(stuffPlural3)+'$'+startups.indexOf(startup)+'$'+startups.indexOf(startup2)+'$'+startups.indexOf(startup3);
+  $('#share').attr('href', shareUrl);
   $('.twitter-share-button').remove();
-  var tweetText = generatedText.replace(/<br>/g,', ');
+  var tweetText = 'Startup Idea Generator: ' + generatedText.replace(/<br>/g,', ');
   $('#twitterShare').html('<a href="https://twitter.com/share" class="twitter-share-button" data-url="' + shareUrl + '" data-text="' + generatedText + '" data-lang="en">Tweet</a>');
   if (twttr.widgets) {
     twttr.widgets.load();
@@ -113,6 +116,9 @@ else {
   var stuffPlural = decodeStr(unescape(gup('word')).split('$')[0]);
   var stuffPlural2 = decodeStr(unescape(gup('word')).split('$')[1]);
   var stuffPlural3 = decodeStr(unescape(gup('word')).split('$')[2]);
+  var startup = gup('word').split('$')[3];
+  var startup2 = gup('word').split('$')[4];
+  var startup3 = gup('word').split('$')[5];
   getWords(true);
-  generate(stuffPlural, stuffPlural2, stuffPlural3);
+  generate(stuffPlural, stuffPlural2, stuffPlural3, startup, startup2, startup3);
 }
