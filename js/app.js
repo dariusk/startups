@@ -98,6 +98,7 @@ function generate(stuffPlural, stuffPlural2, stuffPlural3) {
   var shareUrl = location.href.split('?')[0]+'?word='+encodeStr(stuffPlural)+'$'+encodeStr(stuffPlural2)+'$'+encodeStr(stuffPlural3);
   $('#share').attr('href', shareUrl);;
   $('.twitter-share-button').remove();
+  var tweetText = generatedText.replace(/<br>/g,', ');
   $('#twitterShare').html('<a href="https://twitter.com/share" class="twitter-share-button" data-url="' + shareUrl + '" data-text="' + generatedText + '" data-lang="en">Tweet</a>');
   if (twttr.widgets) {
     twttr.widgets.load();
