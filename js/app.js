@@ -102,7 +102,7 @@ function generate(stuffPlural, stuffPlural2, stuffPlural3, startup, startup2, st
   $('#share').attr('href', shareUrl);
   $('.twitter-share-button').remove();
   var tweetText = 'Startup Idea Generator: ' + generatedText.replace(/<br>/g,', ');
-  $('#twitterShare').html('<a href="https://twitter.com/share" class="twitter-share-button" data-url="' + shareUrl + '" data-text="' + generatedText + '" data-lang="en">Tweet</a>');
+  $('#twitterShare').html('<a href="https://twitter.com/share" class="twitter-share-button" data-url="' + shareUrl + '" data-text="' + tweetText + '" data-lang="en">Tweet</a>');
   if (twttr.widgets) {
     twttr.widgets.load();
   }
