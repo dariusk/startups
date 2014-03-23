@@ -26,7 +26,9 @@ var startups = [
   "Instagram",
   "FitBit",
   "Meetup",
-  "Snapchat"
+  "Snapchat",
+  "Grindr",
+  "OKCupid"
 ],
   stuff = [];
 var url = location.href;
